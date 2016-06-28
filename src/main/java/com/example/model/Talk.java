@@ -1,6 +1,7 @@
 package com.example.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -15,7 +16,9 @@ public class Talk {
 
     private String title;
 
-    private Date startTime;
+    private LocalDateTime startTime;
+
+    private String speaker;
 
     @ManyToOne(cascade=CascadeType.ALL)
     private Agenda agenda;
@@ -36,14 +39,6 @@ public class Talk {
         this.title = title;
     }
 
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
 
     public Agenda getAgenda() {
         return agenda;
@@ -51,5 +46,21 @@ public class Talk {
 
     public void setAgenda(Agenda agenda) {
         this.agenda = agenda;
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getSpeaker() {
+        return speaker;
+    }
+
+    public void setSpeaker(String speaker) {
+        this.speaker = speaker;
     }
 }
