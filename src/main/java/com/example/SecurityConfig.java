@@ -33,40 +33,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public ApplicationContext context;
 
     @Autowired
-    private Environment environment;
-
-    @Autowired
     private OrganizerRepository organizerRepository;
     
     @Override
     public void configure(final WebSecurity web) throws Exception {
-        web
-                .ignoring()
-                .antMatchers("/asset/**")
-                .antMatchers("/css/**")
-                .antMatchers("/fonts/**")
-                .antMatchers("/images/**")
-                .antMatchers("/js/**");
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth
-//                .inMemoryAuthentication()
-//                .withUser("user").password("password").roles("USER")
-//                .and()
-//                .withUser("admin").password(environment.getProperty("admin.password")).roles("ADMIN", "USER");
 	        
     		auth.authenticationProvider(new AuthenticationProvider() {
 	            @Override
 	            public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 	                String username = (String) authentication.getPrincipal();
 	                String providedPassword = (String) authentication.getCredentials();
-	                
-//	                //organizer  hack
-//	                if(username.equals("admin") && providedPassword.equals(environment.getProperty("admin.password"))){
-//	                	return new UsernamePasswordAuthenticationToken(username, providedPassword, Collections.singleton(new SimpleGrantedAuthority("ADMIN")));
-//	                }
 	                
 	                Organizer user = organizerRepository.findUserByUsername(username);
 	                
@@ -91,7 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/login", "/404").permitAll() // #4
                 .antMatchers(HttpMethod.GET, "/events", "/agenda", "/talk/**").permitAll()
-                .antMatchers("/events/**").hasAuthority("ORGANIZER") // #6
+//                .antMatchers("/events/**").hasAuthority("ORGANIZER") // #6
 //                .antMatchers("/user/**").hasAuthority("USER") //will contain schedule and etc
                 .anyRequest().authenticated() // 7
         		.and()
