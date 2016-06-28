@@ -14,8 +14,6 @@ public class Event {
 
 	private String title;
 	
-	private String content;
-	
 	private String location;
 	
 	public Long getId() {
@@ -32,14 +30,6 @@ public class Event {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
 	}
 
 	public String getLocation() {
