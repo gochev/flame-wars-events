@@ -70,8 +70,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/login", "/404").permitAll() // #4
-                .antMatchers(HttpMethod.GET, "/events/**", "/agenda/**", "/talk/**").permitAll()
-//                .antMatchers("/events/**").hasAuthority("ORGANIZER") // #6
+                .antMatchers(HttpMethod.GET, "/events/**", "/agenda/**", "/talks/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/registrations/**").permitAll()
+                .antMatchers("/events/**", "/talks/**").hasAuthority("ORGANIZER") // #6
 //                .antMatchers("/user/**").hasAuthority("USER") //will contain schedule and etc
                 .anyRequest().authenticated() // 7
         		.and()

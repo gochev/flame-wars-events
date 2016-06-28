@@ -1,9 +1,13 @@
 package com.example.model;
 
+import java.util.Collections;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Event {
@@ -16,6 +20,9 @@ public class Event {
 	
 	private String location;
 
+	@OneToMany(mappedBy="event")
+	private Set<Registration> registrations = Collections.emptySet();
+	
 	public Long getId() {
 		return id;
 	}
@@ -38,6 +45,14 @@ public class Event {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public Set<Registration> getRegistrations() {
+		return registrations;
+	}
+
+	public void setRegistrations(Set<Registration> registrations) {
+		this.registrations = registrations;
 	}
 
 }

@@ -16,10 +16,10 @@ public class Talk {
 
     private String title;
 
-    private LocalDateTime startTime;
+    private Date startTime;
 
     private String speaker;
-
+    
     @ManyToOne(cascade=CascadeType.ALL)
     private Agenda agenda;
 
@@ -48,11 +48,11 @@ public class Talk {
         this.agenda = agenda;
     }
 
-    public LocalDateTime getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 

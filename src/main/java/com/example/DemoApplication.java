@@ -15,6 +15,7 @@ import com.example.repository.EventRepository;
 import com.example.repository.OrganizerRepository;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -46,7 +47,7 @@ public class DemoApplication {
 		talk.setSpeaker("petar petrov");
 		talk.setAgenda(agenda);
 
-		talk.setStartTime(LocalDateTime.now());
+		talk.setStartTime(new Date());
 
 		talkRepository.save(talk);
 

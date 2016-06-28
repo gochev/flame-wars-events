@@ -17,7 +17,7 @@ public class Registration {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Event event;
 
     @Embedded

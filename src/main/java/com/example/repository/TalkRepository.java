@@ -7,7 +7,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 /**
  * Created by nikolayrusev on 6/28/16.
  */
-@RepositoryRestResource(path = "talk") 
+@RepositoryRestResource(path = "talks") 
 public interface TalkRepository extends PagingAndSortingRepository<Talk, Long> {
 
 }
