@@ -1,10 +1,11 @@
 package com.example.repository;
 
-import com.example.model.Attendee;
+import com.example.model.Registration;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * @author tsachev
  */
-public interface AttendeeRepository extends JpaRepository<Attendee, Long> {
+public interface RegistrationRepository extends JpaRepository<Registration, Long> {
+
 }
