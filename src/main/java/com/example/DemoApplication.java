@@ -1,5 +1,9 @@
 package com.example;
 
+import com.example.model.Agenda;
+import com.example.model.Talk;
+import com.example.repository.AgendaRepository;
+import com.example.repository.TalkRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,6 +13,8 @@ import com.example.model.Event;
 import com.example.model.Organizer;
 import com.example.repository.EventRepository;
 import com.example.repository.OrganizerRepository;
+
+import java.time.LocalDateTime;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -26,10 +32,25 @@ public class DemoApplication {
 		Event event = new Event();
 		event.setTitle("Flame Wars");
 		event.setLocation("SoftwareAG, Sofia");
-		
+
+
 		EventRepository eventRepository = context.getBean(EventRepository.class);
 		eventRepository.save(event);
-		
+
+		AgendaRepository agendaRepository = context.getBean(AgendaRepository.class);
+		Agenda agenda = new Agenda();
+
+		TalkRepository talkRepository = context.getBean(TalkRepository.class);
+		Talk talk = new Talk();
+		talk.setTitle("first talk");
+		talk.setSpeaker("petar petrov");
+		talk.setAgenda(agenda);
+
+		talk.setStartTime(LocalDateTime.now());
+
+		talkRepository.save(talk);
+
+
 	}
 	
 }

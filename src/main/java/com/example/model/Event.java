@@ -15,7 +15,7 @@ public class Event {
 	private String title;
 	
 	private String location;
-	
+
 	public Long getId() {
 		return id;
 	}
