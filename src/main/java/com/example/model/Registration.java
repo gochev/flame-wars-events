@@ -1,9 +1,10 @@
 package com.example.model;
 
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  * @author tsachev
@@ -15,6 +16,7 @@ public class Registration {
     @GeneratedValue
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
     private Event event;
 
     public Long getId() {
