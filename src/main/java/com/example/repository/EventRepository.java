@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.example.model.Event;
 
 @Repository(value = EventRepository.NAME)
-@RepositoryRestResource(path = "submissions") 
+@RepositoryRestResource(path = "events") 
 public interface EventRepository extends PagingAndSortingRepository<Event, Long> {
 	public static final String NAME = "eventRepository";
 }
