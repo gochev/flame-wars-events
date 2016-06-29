@@ -14,13 +14,12 @@ public class Talk {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String title;
+    @OneToOne
+    private Submission submission;
 
     private Date startTime;
 
-    private String speaker;
-    
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne
     private Agenda agenda;
 
     public Long getId() {
@@ -31,13 +30,6 @@ public class Talk {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
 
     public Agenda getAgenda() {
@@ -56,11 +48,12 @@ public class Talk {
         this.startTime = startTime;
     }
 
-    public String getSpeaker() {
-        return speaker;
-    }
+	public Submission getSubmission() {
+		return submission;
+	}
 
-    public void setSpeaker(String speaker) {
-        this.speaker = speaker;
-    }
+	public void setSubmission(Submission submission) {
+		this.submission = submission;
+	}
+
 }

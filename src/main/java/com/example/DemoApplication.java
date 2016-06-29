@@ -3,10 +3,12 @@ package com.example;
 import com.example.model.Agenda;
 import com.example.model.Event;
 import com.example.model.Organizer;
+import com.example.model.Submission;
 import com.example.model.Talk;
 import com.example.repository.AgendaRepository;
 import com.example.repository.EventRepository;
 import com.example.repository.OrganizerRepository;
+import com.example.repository.SubmissionRepository;
 import com.example.repository.TalkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -39,15 +41,18 @@ public class DemoApplication {
         private final AgendaRepository agendaRepository;
 
         private final TalkRepository talkRepository;
+        
+        private final SubmissionRepository submissionRepository;
 
         @Autowired
         public Initializer(PasswordEncoder passwordEncoder, OrganizerRepository organizerRepository, EventRepository eventRepository,
-                           AgendaRepository agendaRepository, TalkRepository talkRepository) {
+                           AgendaRepository agendaRepository, TalkRepository talkRepository, SubmissionRepository submissionRepository) {
             this.passwordEncoder = passwordEncoder;
             this.organizerRepository = organizerRepository;
             this.eventRepository = eventRepository;
             this.agendaRepository = agendaRepository;
             this.talkRepository = talkRepository;
+            this.submissionRepository = submissionRepository;
         }
 
         @Override
@@ -64,13 +69,24 @@ public class DemoApplication {
 
             eventRepository.save(event);
 
+            Submission submission = new Submission();
+            submission.setTitle("first talk");
+            submission.setEmail("petar petrov");
+            submission.setHeadline("nou qk talk brat izberete me");
+            submissionRepository.save(submission);
+            
+            Submission submission2 = new Submission();
+            submission2.setTitle("awesome  talk");
+            submission2.setEmail("4o4o ");
+            submission2.setHeadline("ne e awesome");
+            submissionRepository.save(submission2);
+            
             Agenda agenda = new Agenda();
-
+            agendaRepository.save(agenda);
+            
             Talk talk = new Talk();
-            talk.setTitle("first talk");
-            talk.setSpeaker("petar petrov");
             talk.setAgenda(agenda);
-
+            talk.setSubmission(submission);
             talk.setStartTime(new Date());
 
             talkRepository.save(talk);

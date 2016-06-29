@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Event {
@@ -22,6 +24,10 @@ public class Event {
 
 	@OneToMany(mappedBy="event")
 	private Set<Registration> registrations = Collections.emptySet();
+	
+	@ManyToOne
+	private Agenda agenda;
+	
 	
 	public Long getId() {
 		return id;
@@ -53,6 +59,14 @@ public class Event {
 
 	public void setRegistrations(Set<Registration> registrations) {
 		this.registrations = registrations;
+	}
+
+	public Agenda getAgenda() {
+		return agenda;
+	}
+
+	public void setAgenda(Agenda agenda) {
+		this.agenda = agenda;
 	}
 
 }

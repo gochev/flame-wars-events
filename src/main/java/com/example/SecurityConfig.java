@@ -71,7 +71,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/login", "/404").permitAll() // #4
                 .antMatchers(HttpMethod.GET, "/events/**", "/agenda/**", "/talks/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/registrations/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/registrations/**","/submissions/**").permitAll()
+//                .antMatchers(HttpMethod.POST, "/talks/**").hasAuthority("SPEAKER") // #6
                 .antMatchers("/events/**", "/talks/**").hasAuthority("ORGANIZER") // #6
 //                .antMatchers("/user/**").hasAuthority("USER") //will contain schedule and etc
                 .anyRequest().authenticated() // 7
